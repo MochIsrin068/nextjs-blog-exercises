@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import Layout from '../components/layout'
 import styleButton from '../styles/button.module.scss'
+import {GetStaticProps} from 'next'
 
-const About = ({mediumData}) => {
+const About = ({mediumData} : any) => {
     return (
         <Layout>
             <Head>
@@ -54,7 +55,7 @@ const About = ({mediumData}) => {
     )
 }
 // Statc Generation Data Fething
-export async  function getStaticProps(){
+export const getStaticProps : GetStaticProps = async() => {
     const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@isrin068')
     const mediumData = await res.json()
 

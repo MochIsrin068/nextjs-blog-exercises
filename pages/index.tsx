@@ -7,8 +7,13 @@ import alertStyles from '../styles/alert.module.css'
 import cn from 'classnames'
 import { getSortedPostsData } from '../lib/posts'
 import Date from '../components/date'
+import {GetStaticProps} from 'next'
 
-export default function Home({allPostsData}) {
+export default function Home({allPostsData} : { allPostsData: {
+  date: string
+  title: string
+  id: string
+}[]}) {
   const [isShow, setIshow] = useState(false)
   return (
     <Layout home>
@@ -59,7 +64,7 @@ export default function Home({allPostsData}) {
   )
 }
 
-export async function getStaticProps() {
+export const getStaticProps : GetStaticProps = async() => {
   const allPostsData = getSortedPostsData()
   return {
     props: {
